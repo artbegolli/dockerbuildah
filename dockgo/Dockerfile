@@ -1,5 +1,10 @@
 FROM docker:stable
-RUN apk update && apk add --no-cache --virtual .build-deps bash gcc musl-dev openssl go &&\
+
+# Go Install
+RUN apk add --no-cache \
+		ca-certificates
+
+RUN apk update && apk add --no-cache --virtual .build-deps bash gcc musl-dev go &&\
     wget -O go.tgz https://dl.google.com/go/go1.13.3.src.tar.gz &&\
     tar -C /usr/local -xzf go.tgz &&\
     cd /usr/local/go/src/ &&\
